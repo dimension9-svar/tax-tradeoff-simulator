@@ -13,6 +13,7 @@ import {
 import Slider from "./Slider";
 import ScoreBar from "./ScoreBar";
 import MessageBox from "./MessageBox";
+import StructurePanel from "./StructurePanel";
 
 const INITIAL = new Array(N).fill(0);
 
@@ -75,18 +76,19 @@ export default function Simulator() {
   }, []);
 
   return (
-    <div className="w-full max-w-[700px] mx-auto">
+    <div className="w-full max-w-[720px] mx-auto">
       <h1 className="text-xl font-medium mb-2">
         Tax trade-off simulator
       </h1>
       <div className="text-xs text-[var(--text-tertiary)] mb-2 leading-relaxed py-2.5 px-3 border-l-[3px] border-[#85B7EB] bg-[var(--bg-secondary)]">
-        Irish Ltd (12.5% CT) — 4 co-founders in South Africa, 1
+        Irish Ltd (12.5% CT) &mdash; 4 co-founders in South Africa, 1
         co-founder + 1 investor in Ireland
       </div>
       <p className="text-[13px] text-[var(--text-secondary)] mb-6 leading-relaxed">
-        Drag any handle to resolve that issue. Watch how fixing one tax
-        risk creates exposure elsewhere — there&apos;s no configuration
-        where everything is green.
+        Each handle represents a structural risk dimension. Drag toward
+        &ldquo;safe&rdquo; to resolve that risk &mdash; the analysis
+        below rewrites to show exactly how your corporate structure,
+        cap table, governance, and compliance obligations change.
       </p>
 
       <div className="flex gap-2 justify-center mb-6 flex-wrap">
@@ -116,18 +118,26 @@ export default function Simulator() {
         values={values}
       />
 
-      <button
-        onClick={reset}
-        className="mt-3 text-xs cursor-pointer py-1.5 px-4 bg-transparent border border-[var(--border)] rounded-lg text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] transition-colors"
-      >
-        Reset all handles
-      </button>
+      <StructurePanel values={values} />
 
-      <div className="mt-8 pt-4 border-t border-[var(--border)] text-[11px] text-[var(--text-tertiary)] leading-relaxed">
-        Illustrative only — not tax advice. Couplings are approximate
-        and intended to demonstrate the interconnected nature of
-        cross-border tax risks. Consult a qualified tax advisor for
-        your specific situation.
+      <div className="mt-4 flex items-center gap-3">
+        <button
+          onClick={reset}
+          className="text-xs cursor-pointer py-1.5 px-4 bg-transparent border border-[var(--border)] rounded-lg text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] transition-colors"
+        >
+          Reset all handles
+        </button>
+        <span className="text-[10px] text-[var(--text-tertiary)]">
+          Source: D9 Corporate Structure Options Comparison V1.0
+        </span>
+      </div>
+
+      <div className="mt-6 pt-4 border-t border-[var(--border)] text-[11px] text-[var(--text-tertiary)] leading-relaxed">
+        Illustrative only &mdash; not tax advice. Based on Leroy
+        Rutherford&apos;s Board Advisory Pack (April 2026) and founding
+        team analysis. Couplings are approximate and intended to
+        demonstrate the interconnected nature of cross-border tax risks.
+        Consult a qualified tax advisor for your specific situation.
       </div>
     </div>
   );

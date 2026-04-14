@@ -63,17 +63,26 @@ export const DESCRIPTIONS: Record<
 /**
  * Coupling matrix: COUPLINGS[i][j] describes how resolving handle i
  * affects handle j. Positive = co-beneficial, negative = creates tension.
+ *
+ * Updated to reflect the D9 Corporate Structure Options Comparison document:
+ * - CFC fix (12.4%) creates GAAR exposure (timing/motive risk)
+ * - CFC fix eliminates FBE requirement
+ * - CFC and POEM are independent legal tests
+ * - POEM governance (2:1 board) strengthens BPR viability
+ * - POEM governance helps Irish Revenue substance
+ * - FBE substance helps CFC exemption
+ * - PE risk from SA founders creates POEM tension
  */
 export const COUPLINGS: number[][] = [
   /*           GAAR  SARS   CFC    PE    POEM   FBE    BPR   IRev */
-  /* GAAR */ [0, 0, 0, -0.5, 0, 0.6, 0.7, 0.5],
-  /* SARS */ [0, 0, -0.6, 0, 0, 0, -0.5, 0],
-  /* CFC  */ [0, -0.4, 0, 0, 0.5, -0.7, 0, -0.5],
-  /* PE   */ [-0.4, 0.5, 0, 0, -0.6, 0, 0, 0.4],
-  /* POEM */ [0, 0, 0.6, -0.5, 0, 0.5, 0, 0.7],
-  /* FBE  */ [0.4, 0, 0.5, -0.6, 0, 0, 0, -0.4],
-  /* BPR  */ [0.6, -0.5, 0, 0, 0, -0.4, 0, 0],
-  /* IRev */ [0, 0, -0.4, 0.5, 0.5, 0, -0.6, 0],
+  /* GAAR */ [0, 0.3, 0, -0.3, 0, 0.4, 0.7, 0.4],
+  /* SARS */ [0.2, 0, -0.5, 0, 0, 0, -0.4, 0],
+  /* CFC  */ [-0.55, -0.3, 0, 0, 0, 0.7, 0, -0.3],
+  /* PE   */ [-0.3, 0.3, 0, 0, -0.5, 0, 0, 0.3],
+  /* POEM */ [0, 0, 0, -0.4, 0, 0.3, 0.5, 0.7],
+  /* FBE  */ [0.3, 0, 0.5, -0.5, 0.3, 0, 0.3, 0],
+  /* BPR  */ [0.6, -0.4, 0, 0, 0.3, -0.3, 0, 0.3],
+  /* IRev */ [0.3, 0, -0.3, 0.3, 0.5, 0.3, -0.4, 0],
 ];
 
 export const N = LABELS.length;
@@ -146,3 +155,4 @@ export function applyChange(
   }
   return result;
 }
+
